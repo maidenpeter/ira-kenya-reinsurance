@@ -14,7 +14,7 @@ General insurers only: no reinsurers and no micro insurers. A company must have 
 |---|---|---|
 | capital_cover | Total equity over IRA's minimum capital for a general insurer: the higher of KSh 600m and 20% of net earned premium (Insurance Act capital requirements) | higher |
 | liquidity_cover | Cash, term deposits and government securities over insurance liabilities (underwriting provisions and actuarial liabilities under IFRS 4; insurance contract liabilities under IFRS 17) | higher |
-| receivables_share | Premium receivables and other receivables over total assets (insurance contract assets replace outstanding premiums under IFRS 17) | lower |
+| receivables_share | Outstanding premiums and other receivables over total assets. IFRS 4 years only: under IFRS 17 premiums receivable are netted into insurance contract liabilities, most insurers report almost no receivables, and the ratio no longer measures credit exposure. From 2024 the balance sheet pillar rests on capital and liquidity. | lower |
 | combined_ratio_3y | Mean of the last three full-year net combined ratios: claims, commissions and management expenses over net earned premium. Each year is capped at 300% so one tiny year cannot dominate | lower |
 | loss_ratio_volatility_5y | Standard deviation of the net loss ratio over up to five full years, with at least three needed | lower |
 | return_on_equity_3y | Mean of profit after tax over equity over the last three years. A company with negative equity takes the bottom rank | higher |
@@ -46,6 +46,7 @@ Five insurers were placed under statutory management or liquidation between 2022
 ## Limits
 
 - IRA's figures are unaudited quarterly returns.
-- Equity stands in for the risk-based capital adequacy ratio, which IRA does not publish per company.
+- Equity stands in for the risk-based capital adequacy ratio, which IRA does not publish per company. Cross-check: IRA reported 15 of 35 general insurers short of required capital at December 2023 (Business Daily, 8 December 2024, https://www.businessdailyafrica.com/bd/corporate/companies/eyes-on-ira-as-23-insurers-breach-minimum-capital-position-4850574). The equity floor flags 9 of 34 in 2023, so it understates capital shortfalls.
+- The capital floor uses the current rule for every year. The risk-based part of Kenya's capital regime was postponed to 30 June 2020 (Bowmans, 30 June 2017, https://bowmanslaw.com/insights/key-amendments-insurance-act-cap-487/), so for 2016 to 2019 the floor is stricter than the rule then in force. It caps six grades in those years (AAR 2018, Monarch 2016 and 2018, Saham 2016, Takaful 2018 and 2019) and none of the back-test grades.
 - The balance sheet is the general business return. For composite insurers it covers the general fund only.
 - The IFRS 17 switch from Q1 2024 changes the balance sheet lines. Ranking within each year keeps comparisons like for like, but levels before and after 2024 should not be compared directly.

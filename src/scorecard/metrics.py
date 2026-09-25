@@ -83,7 +83,10 @@ def build():
     m["capital_floor"] = np.maximum(600.0, 0.20 * m.net_earned.fillna(0))  # IRA general insurer minimum: higher of KSh 600m and 20% of NEP
     m["capital_cover"] = m.equity / m.capital_floor
     m["liquidity_cover"] = m.liquid_assets / m.insurance_liabilities.replace(0, np.nan)
-    m["receivables_share"] = m.receivables / m.total_assets
+    # Under IFRS 17 premiums receivable sit inside the insurance contract liabilities, so most insurers
+    # report next to nothing as receivables. The ratio stops meaning the same thing, so it is left out
+    # from 2024 and the balance sheet pillar rests on capital and liquidity for those years.
+    m["receivables_share"] = (m.receivables / m.total_assets).where(m.reporting_basis != "IFRS 17")
     m["return_on_equity"] = m.profit_after_tax / m.equity.where(m.equity > 0)
     m = m.reset_index()
     m["market_share"] = m.written_premium / m.groupby("year").written_premium.transform("sum")
