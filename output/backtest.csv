@@ -1,0 +1,6 @@
+company_id,event,event_date,source,last_scored_year,grade,rank,bottom_quintile,grades_history,after_last_score
+resolution,statutory management,2022-04,https://www.capitalfm.co.ke/business/2022/04/resolution-insurance-placed-under-statutory-management-over-unsettled-claims/,2021,D,33 of 35,True,2016:D 2018:D 2019:D 2020:D 2021:D,
+xplico,statutory management,2023-12,https://www.capitalfm.co.ke/business/2023/12/xplico-insurance-placed-under-statutory-management-as-invesco-liquidated/,2022,D,29 of 33,True,2018:C 2019:C 2022:D,
+invesco,liquidation by the Official Receiver,2023-12,https://www.capitalfm.co.ke/business/2023/12/xplico-insurance-placed-under-statutory-management-as-invesco-liquidated/,2022,E,33 of 33,True,2016:D 2018:D 2022:E,
+trident,statutory management,2026-03,https://x.com/ira_kenya/status/2031600557375344841,2022,C,20 of 33,False,2016:C 2018:C 2019:C 2020:C 2021:C 2022:C,2023 no full-year return (no returns filed all year); 2024 no full-year return (filed Q2 only); 2025 no full-year return (no returns filed all year)
+corporate,statutory management,2026-03,https://x.com/ira_kenya/status/2031600557375344841,2021,C,28 of 35,False,2019:C 2020:D 2021:C,"2022 no full-year return (filed Q1, Q2, Q3 only); 2023 below KSh 500m written premium (289m); 2024 below KSh 500m written premium (140m); 2025 no full-year return (filed Q1, Q2, Q3 only)"
