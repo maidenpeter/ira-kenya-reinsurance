@@ -1,0 +1,73 @@
+# ira-kenya-reinsurance
+
+A reinsurer's view of Kenya's general insurers: every company scored each year the way a reinsurance underwriter screens a cedant, from the Insurance Regulatory Authority's own returns.
+
+Before a reinsurer accepts business it asks four questions of the insurer ceding it. Does this company make money on its underwriting? Is its balance sheet strong enough to stand behind the business? What kind of book is it, and how much of the risk does it keep? Can its numbers be trusted? This repo answers those questions for 33 insurers across nine years, using nothing but public data.
+
+## Did it see the failures coming?
+
+Five Kenyan general insurers have been placed under statutory management or liquidation since 2022. In every case the warning was in IRA's own data at least a year before the regulator acted.
+
+| Insurer | Regulator acted | Last scorecard before | What the data showed |
+|---|---|---|---|
+| Resolution Insurance | April 2022 | 2021: grade D, 33rd of 35 | Grade D in every year scored |
+| Xplico Insurance | December 2023 | 2022: grade D, 29th of 33 | Bottom quintile |
+| Invesco Assurance | December 2023 | 2022: grade E, 33rd of 33 | Last place |
+| Trident Insurance | March 2026 | 2022: grade C, 20th of 33 | Filed no returns in 2023 and a single quarter in 2024 |
+| Corporate Insurance | March 2026 | 2021: grade C, 28th of 35 | Premium shrank to KSh 140m and full-year returns went missing |
+
+Three were in the bottom fifth of the table the year before. The other two dropped out of the scorecard because they stopped filing complete returns, which a reinsurer should treat as a warning in its own right. Five cases is a small sample, and the test cannot show how many low-graded insurers carried on without trouble.
+
+## 2025 at a glance
+
+- 33 insurers scored: 8 graded A, 11 B, 5 C, 9 D.
+- Four report negative equity in their general business balance sheet, and two more sit below IRA's minimum capital floor.
+- The median insurer keeps 72% of the premium it writes and has run a combined ratio of 103% over the last three years.
+- ICEA Lion General, Mayfair, Tausi, Britam General and The Heritage top the table.
+
+Grades are relative: they say where a company stands among Kenyan general insurers that year. They are not credit ratings.
+
+## How the score works
+
+The structure follows the building blocks of Best's Credit Rating Methodology, limited to what IRA publishes. Each metric is ranked against the year's peers (percentiles, 0 to 100), averaged within its pillar, and weighted.
+
+| Pillar | Weight | Metrics |
+|---|---|---|
+| Balance sheet | 35 | Equity over IRA's minimum capital (the higher of KSh 600m and 20% of net earned premium); liquid assets over insurance liabilities; receivables over total assets |
+| Operating performance | 35 | Three-year combined ratio; five-year loss ratio volatility; three-year return on equity |
+| Business profile | 15 | Size; diversification across classes; retention |
+| Return quality | 15 | Errors, warnings and missed filings in IRA's returns over three years |
+
+Grades: A 70 and above, B 55 to 70, C 40 to 55, D 25 to 40, E below 25. Negative equity or equity below the capital floor caps the grade at D, whatever the score.
+
+Watch flags are reported beside every grade as absolute tests: negative equity, below the capital floor, combined ratio above 110% over three years, three straight underwriting losses, an unreliable return, retention under 25%.
+
+The ranking holds up when the weights change. With equal weights for every metric, or for every pillar, the order correlates at 0.96 to 0.99 with the base case in every year (`output/sensitivity.csv`). Full method and caveats: `docs/methodology.md`.
+
+## Files
+
+| File | What it holds |
+|---|---|
+| `output/cedant_scorecard.csv` | Grade, score, pillar scores, percentile of every metric and watch flags, per insurer and year |
+| `output/cedant_metrics.csv` | The underlying metrics in KSh millions and ratios |
+| `output/not_scored.csv` | Insurers left out each year and why |
+| `output/backtest.csv` | The five failures against their scorecard history, with sources |
+| `output/sensitivity.csv` | Rank correlation and grade changes under alternative weights |
+
+## Running it
+
+The data comes from [ira-kenya-data](https://github.com/maidenpeter/ira-kenya-data). Clone both repos side by side (or set `IRA_DATA_DIR`), then:
+
+```
+pip install -r requirements.txt
+./run.sh
+```
+
+## Caveats
+
+- IRA's quarterly returns are unaudited. The balance sheet is the company's general business return; for composite insurers it covers the general fund only.
+- Equity is a stand-in for IRA's risk-based capital test, which needs data IRA does not publish.
+- IRA moved these statements to IFRS 17 from Q1 2024, so some balance sheet metrics are not comparable across that line. Scores are ranked within each year, so every comparison is like with like.
+- Everything here is public IRA data. Nothing comes from inside any insurer.
+
+Marion Peter
