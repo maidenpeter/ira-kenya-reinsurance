@@ -1,0 +1,531 @@
+<title>Kenya Cedant Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#f4f6f3; --surface:#ffffff; --ink:#15202b; --ink-2:#4f5a64; --muted:#6d7780;
+  --rule:#d9dfdb; --rule-soft:#e8ece9; --accent:#184f95; --accent-soft:#e3ecf8;
+  --crit:#c23b3b; --warn:#a86f00; --info:#4f5a64;
+  --gA:#0b6e4f; --gB:#5d9e76; --gC:#c9a646; --gD:#dd7a3a; --gE:#b8322f;
+  --gA-t:#ffffff; --gB-t:#ffffff; --gC-t:#2b2410; --gD-t:#ffffff; --gE-t:#ffffff;
+  --nr:#e7e3dc; --nr-line:#b9b1a4;
+  --p1:#184f95; --p2:#4d7fc0; --p3:#8fb1de; --p4:#c3d5ee;
+  --serif:"EB Garamond", Garamond, "Adobe Garamond Pro", Georgia, serif;
+  --ui:"IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#10161c; --surface:#172029; --ink:#e7ebee; --ink-2:#b4bdc5; --muted:#8f99a3;
+    --rule:#2b3640; --rule-soft:#222c35; --accent:#86b6ef; --accent-soft:#1d2a3a;
+    --crit:#ec6b67; --warn:#f0b43a; --info:#b4bdc5;
+    --gA:#1f9a70; --gB:#6fb088; --gC:#d6b457; --gD:#e5874a; --gE:#d9534f;
+    --gA-t:#ffffff; --gB-t:#0e1a14; --gC-t:#1f1a0b; --gD-t:#1c0f06; --gE-t:#ffffff;
+    --nr:#26303a; --nr-line:#4a5561;
+    --p1:#86b6ef; --p2:#5b8fd0; --p3:#3a679f; --p4:#2a4466;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#10161c; --surface:#172029; --ink:#e7ebee; --ink-2:#b4bdc5; --muted:#8f99a3;
+  --rule:#2b3640; --rule-soft:#222c35; --accent:#86b6ef; --accent-soft:#1d2a3a;
+  --crit:#ec6b67; --warn:#f0b43a; --info:#b4bdc5;
+  --gA:#1f9a70; --gB:#6fb088; --gC:#d6b457; --gD:#e5874a; --gE:#d9534f;
+  --gA-t:#ffffff; --gB-t:#0e1a14; --gC-t:#1f1a0b; --gD-t:#1c0f06; --gE-t:#ffffff;
+  --nr:#26303a; --nr-line:#4a5561;
+  --p1:#86b6ef; --p2:#5b8fd0; --p3:#3a679f; --p4:#2a4466;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.45}
+a{color:var(--accent)}
+.wrap{max-width:1180px; margin:0 auto; padding-inline:20px; padding-block:28px 56px; display:flex; flex-direction:column; gap:36px}
+header.top{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px 24px; border-bottom:1px solid var(--rule); padding-bottom:18px}
+.eyebrow{font-family:var(--ui); font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted)}
+h1{font-size:clamp(32px,4.6vw,48px); font-weight:500; line-height:1.04; margin:4px 0 8px; text-wrap:balance; letter-spacing:-.005em}
+h2{font-size:clamp(24px,3vw,30px); font-weight:500; line-height:1.12; margin:0; text-wrap:balance}
+h3{font-size:21px; font-weight:500; margin:0}
+.lede{margin:0; color:var(--ink-2); max-width:64ch}
+.stamp{font-family:var(--ui); font-size:13px; color:var(--muted); text-align:right; line-height:1.55}
+.ui{font-family:var(--ui)}
+.small{font-family:var(--ui); font-size:13px; color:var(--muted)}
+section{display:flex; flex-direction:column; gap:14px; min-width:0}
+.sechead{display:flex; flex-direction:column; gap:6px}
+.sechead p{margin:0; color:var(--ink-2); max-width:70ch}
+
+/* hero: failure strips */
+.thesis{font-size:clamp(22px,2.7vw,29px); line-height:1.25; margin:0; max-width:40ch; text-wrap:balance}
+.thesis em{font-style:italic; color:var(--crit)}
+.strips{background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:18px 18px 12px; overflow-x:auto}
+.strip-grid{display:grid; grid-template-columns:minmax(150px,1.3fr) repeat(11, minmax(38px,1fr)); column-gap:3px; row-gap:0; min-width:640px; align-items:stretch}
+.strip-grid .yh{font-family:var(--ui); font-size:12px; color:var(--muted); text-align:center; padding-bottom:6px; font-variant-numeric:tabular-nums}
+.strip-name{position:sticky; left:0; z-index:2; background:var(--surface); font-size:18px; line-height:1.15; padding:10px 10px 10px 0; display:flex; flex-direction:column; justify-content:center; gap:2px; border-top:1px solid var(--rule-soft)}
+.strip-name .small{font-size:12px}
+.cell{position:relative; border-top:1px solid var(--rule-soft); padding:8px 0; display:flex; align-items:center; justify-content:center}
+.g, .pill, .dot, .sw, .event, .eventkey{font-style:normal}
+.g{display:inline-flex; align-items:center; justify-content:center; font-family:var(--ui); font-weight:600; font-size:14px; border-radius:4px; width:100%; height:34px; font-variant-numeric:tabular-nums}
+.g.A{background:var(--gA); color:var(--gA-t)} .g.B{background:var(--gB); color:var(--gB-t)} .g.C{background:var(--gC); color:var(--gC-t)}
+.g.D{background:var(--gD); color:var(--gD-t)} .g.E{background:var(--gE); color:var(--gE-t)}
+.g.nr{background:repeating-linear-gradient(135deg, var(--nr) 0 5px, transparent 5px 9px); border:1px dashed var(--nr-line); color:var(--muted); font-weight:500; font-size:11px}
+.g.sm{background:var(--nr); color:var(--muted); font-weight:500; font-size:11px}
+.g.gap{background:transparent; color:var(--muted); font-weight:400}
+.g.after{background:transparent}
+.event{position:absolute; top:2px; bottom:2px; width:0; border-left:2px solid var(--crit); z-index:1}
+.event span{position:absolute; top:-2px; left:5px; font-family:var(--ui); font-size:11px; font-weight:600; color:var(--crit); white-space:nowrap; line-height:1.1}
+.strip-cap{grid-column:2 / -1; font-family:var(--ui); font-size:13px; color:var(--ink-2); padding:0 0 10px; line-height:1.35}
+.keyrow{display:flex; flex-wrap:wrap; gap:6px 16px; font-family:var(--ui); font-size:12px; color:var(--ink-2); margin-top:10px}
+.keyrow span{display:inline-flex; align-items:center; gap:6px}
+.keyrow .g{width:22px; height:16px; font-size:10px}
+.eventkey{display:inline-block; width:0; height:14px; border-left:2px solid var(--crit)}
+
+/* year controls and summary */
+.bar{display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; justify-content:space-between}
+.years{display:flex; flex-wrap:wrap; gap:3px; background:var(--rule-soft); padding:3px; border-radius:8px}
+.years button{font-family:var(--ui); font-size:14px; border:0; background:transparent; color:var(--ink-2); padding:6px 11px; border-radius:6px; cursor:pointer; font-variant-numeric:tabular-nums}
+.years button[aria-pressed="true"]{background:var(--surface); color:var(--ink); box-shadow:0 1px 2px rgba(0,0,0,.1)}
+button:focus-visible, tr[tabindex]:focus-visible, th button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.summary{display:grid; grid-template-columns:1.6fr repeat(3,minmax(0,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden}
+.kpi{background:var(--surface); padding:14px 16px; display:flex; flex-direction:column; gap:4px; min-width:0}
+.kpi .k{font-family:var(--ui); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.kpi .v{font-size:28px; line-height:1.1; font-variant-numeric:tabular-nums lining-nums}
+.kpi .s{font-family:var(--ui); font-size:13px; color:var(--muted)}
+.mix{display:flex; height:30px; border-radius:4px; overflow:hidden; gap:2px}
+.mix div{display:flex; align-items:center; justify-content:center; font-family:var(--ui); font-size:12px; font-weight:600; min-width:0}
+
+/* league + detail */
+.split{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:24px; align-items:start}
+.panel{background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:16px 16px 12px; min-width:0}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse; width:100%; font-family:var(--ui); font-size:14px; font-variant-numeric:tabular-nums}
+th{font-weight:500; color:var(--muted); text-align:right; font-size:12px; letter-spacing:.05em; text-transform:uppercase; padding:6px 8px; border-bottom:1px solid var(--rule); white-space:nowrap}
+td{text-align:right; padding:6px 8px; border-bottom:1px solid var(--rule-soft); white-space:nowrap; color:var(--ink)}
+th.l, td.l{text-align:left}
+th button{all:unset; cursor:pointer}
+th button[data-dir="desc"]::after{content:" \2193"} th button[data-dir="asc"]::after{content:" \2191"}
+tr[tabindex]{cursor:pointer}
+tr[tabindex]:hover td{background:var(--accent-soft)}
+tr[aria-selected="true"] td{background:var(--accent-soft)}
+tr[aria-selected="true"] td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+td .name{font-family:var(--serif); font-size:16px; white-space:nowrap}
+.pill{display:inline-flex; align-items:center; justify-content:center; width:24px; height:22px; border-radius:4px; font-weight:600; font-size:13px}
+.pill.A{background:var(--gA); color:var(--gA-t)} .pill.B{background:var(--gB); color:var(--gB-t)} .pill.C{background:var(--gC); color:var(--gC-t)} .pill.D{background:var(--gD); color:var(--gD-t)} .pill.E{background:var(--gE); color:var(--gE-t)}
+.capped{font-size:11px; color:var(--crit); margin-left:4px}
+.sbar{display:flex; width:120px; height:10px; background:var(--rule-soft); border-radius:2px; overflow:hidden; gap:1px}
+.sbar i{display:block; height:100%}
+.dots{display:inline-flex; gap:3px; vertical-align:middle}
+.dot{width:9px; height:9px; border-radius:50%}
+.dot.crit{background:var(--crit)} .dot.warn{background:var(--warn)} .dot.info{background:transparent; border:1.5px solid var(--info)}
+.legend{display:flex; flex-wrap:wrap; gap:6px 14px; font-family:var(--ui); font-size:12px; color:var(--ink-2); margin:4px 0 8px}
+.legend span{display:inline-flex; align-items:center; gap:5px}
+.sw{width:12px; height:10px; border-radius:2px; display:inline-block}
+
+.detail{position:sticky; top:calc(env(safe-area-inset-top, 0px) + 12px); display:flex; flex-direction:column; gap:14px}
+.dhead{display:flex; gap:14px; align-items:flex-start}
+.dhead .big{flex:none; width:64px; height:64px; border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:var(--ui); font-weight:600; font-size:30px; line-height:1}
+.dhead .big small{font-size:10px; font-weight:500; letter-spacing:.05em; margin-top:3px; opacity:.85}
+.big.A{background:var(--gA); color:var(--gA-t)} .big.B{background:var(--gB); color:var(--gB-t)} .big.C{background:var(--gC); color:var(--gC-t)} .big.D{background:var(--gD); color:var(--gD-t)} .big.E{background:var(--gE); color:var(--gE-t)}
+.dhead h3{font-size:23px; line-height:1.15}
+.dhead .small{margin-top:4px}
+.flags{display:flex; flex-wrap:wrap; gap:6px}
+.chip{font-family:var(--ui); font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid var(--rule); color:var(--ink-2); white-space:nowrap}
+.chip.crit{border-color:var(--crit); color:var(--crit)} .chip.warn{border-color:var(--warn); color:var(--warn)}
+.pillars{display:grid; grid-template-columns:auto 1fr auto; gap:6px 10px; align-items:center; font-family:var(--ui); font-size:13px}
+.pillars .lab{color:var(--ink-2); white-space:nowrap}
+.pillars .lab b{font-weight:500; color:var(--muted); margin-left:4px}
+.track{position:relative; height:12px; background:var(--rule-soft); border-radius:2px}
+.track .fill{position:absolute; left:0; top:0; bottom:0; border-radius:2px}
+.track .mid{position:absolute; left:50%; top:-3px; bottom:-3px; border-left:1px dashed var(--muted); opacity:.6}
+.pillars .val{font-variant-numeric:tabular-nums; text-align:right; min-width:2.5em}
+.mt td{padding:5px 6px; font-size:13px}
+.mt th{padding:4px 6px}
+.ptrack{position:relative; width:110px; height:8px; background:var(--rule-soft); border-radius:4px; display:inline-block; vertical-align:middle}
+.ptrack b{position:absolute; top:-2px; width:12px; height:12px; margin-left:-6px; border-radius:50%; background:var(--accent); border:2px solid var(--surface)}
+.hist{display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:3px}
+.hist .yh{font-family:var(--ui); font-size:11px; color:var(--muted); text-align:center}
+.hist .g{height:26px; font-size:12px}
+
+/* lower grid */
+.grid2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
+.chart svg{display:block; width:100%; height:auto}
+.chart text{font-family:var(--ui); font-size:11px; fill:var(--muted); font-variant-numeric:tabular-nums}
+.notlist{display:flex; flex-direction:column; gap:0; font-family:var(--ui); font-size:14px}
+.notlist div{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:12px; padding:6px 0; border-bottom:1px solid var(--rule-soft)}
+.notlist div span:first-child{font-family:var(--serif); font-size:16px}
+.notlist div span:last-child{color:var(--ink-2)}
+.method{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
+.method p, .method li{max-width:66ch}
+.method ul{margin:0; padding-left:1.1em; display:flex; flex-direction:column; gap:6px}
+.method p{margin:0}
+footer{border-top:1px solid var(--rule); padding-top:16px; font-family:var(--ui); font-size:13px; color:var(--muted); display:flex; flex-direction:column; gap:6px}
+footer p{margin:0; max-width:110ch}
+.tip{position:fixed; z-index:10; background:var(--ink); color:var(--ground); font-family:var(--ui); font-size:12px; padding:6px 9px; border-radius:5px; pointer-events:none; max-width:280px; line-height:1.35}
+
+@media (max-width: 900px){
+  .split{grid-template-columns:1fr}
+  .detail{position:static}
+  .summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .summary .kpi:first-child{grid-column:1 / -1}
+  .grid2, .method{grid-template-columns:1fr}
+  .stamp{text-align:left}
+}
+@media (max-width: 520px){
+  .hide-sm{display:none}
+  .sbar{width:70px}
+  .notlist div{grid-template-columns:1fr; gap:2px}
+}
+@media (prefers-reduced-motion: no-preference){
+  .g, .pill, .fill{transition:background-color .2s}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">A reinsurer's screen of Kenyan general insurers</div>
+      <h1>Kenya Cedant Scorecard</h1>
+      <p class="lede">Every general insurer in Kenya graded each year the way a reinsurance underwriter screens a ceding company: balance sheet, underwriting, the shape of the book, and whether the numbers can be trusted. Built only from the Insurance Regulatory Authority's published returns.</p>
+    </div>
+    <div class="stamp" id="stamp"></div>
+  </header>
+
+  <section aria-labelledby="bt-h">
+    <div class="sechead">
+      <div class="eyebrow" id="bt-h">Back-test</div>
+      <p class="thesis" id="thesis"></p>
+    </div>
+    <div class="strips">
+      <div class="strip-grid" id="strips"></div>
+      <div class="keyrow">
+        <span><i class="g A">A</i><i class="g B">B</i><i class="g C">C</i><i class="g D">D</i><i class="g E">E</i> grade that year</span>
+        <span><i class="g nr">&middot;</i> incomplete returns</span>
+        <span><i class="g sm">&lt;</i> premium below KSh 500m</span>
+        <span><i class="eventkey"></i> regulator steps in</span>
+      </div>
+    </div>
+    <p class="small" id="bt-note" style="margin:0; max-width:110ch"></p>
+  </section>
+
+  <section aria-labelledby="yr-h">
+    <div class="bar">
+      <div class="sechead">
+        <div class="eyebrow">League table</div>
+        <h2 id="yr-h">The market in <span id="yr-title"></span></h2>
+      </div>
+      <div class="years" id="years" role="group" aria-label="Year"></div>
+    </div>
+    <div class="summary" id="summary"></div>
+    <div class="split">
+      <div class="panel">
+        <div class="legend" id="plegend"></div>
+        <div class="tablewrap"><table id="league"></table></div>
+        <p class="small" style="margin:8px 0 0">Select an insurer to see how its grade is built. Flags: <span class="dots"><i class="dot crit"></i></span> capital, <span class="dots"><i class="dot warn"></i></span> underwriting or return quality, <span class="dots"><i class="dot info"></i></span> retention.</p>
+      </div>
+      <div class="panel detail" id="detail" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel">
+      <h3>Grades over time</h3>
+      <p class="small" style="margin:2px 0 8px">Insurers in each grade, by year. Grades are relative to each year's peers, so a steady mix does not mean a steady market.</p>
+      <div class="chart" id="mixchart"></div>
+    </div>
+    <div class="panel">
+      <h3>Does the order depend on the weights?</h3>
+      <p class="small" style="margin:2px 0 8px">Rank correlation with the base scorecard when every metric, or every pillar, gets the same weight.</p>
+      <div class="chart" id="senschart"></div>
+      <p class="small" id="senstext" style="margin:6px 0 0"></p>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="ns-h">
+    <h3 id="ns-h">Left out of <span id="ns-year"></span></h3>
+    <p class="small" style="margin:2px 0 8px">Micro insurers are not scored. Neither is any insurer below KSh 500m of written premium, or without four quarterly returns for the year.</p>
+    <div class="notlist" id="notlist"></div>
+  </section>
+
+  <section aria-labelledby="m-h">
+    <div class="sechead"><div class="eyebrow" id="m-h">Method</div><h2>How a grade is built</h2></div>
+    <div class="method">
+      <div class="panel">
+        <div class="tablewrap"><table id="mtable"></table></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <p>The structure follows the building blocks of Best's Credit Rating Methodology, cut down to what IRA publishes. Each metric is ranked against that year's peers on a 0 to 100 percentile, averaged within its pillar and weighted. Return quality is an absolute score: 100, less 30 for each return that fails a consistency check, 10 for each warning and 10 for each missed filing over three years.</p>
+        <p>Grades: A 70 and above, B 55 to 70, C 40 to 55, D 25 to 40, E below 25. Negative equity, or equity under IRA's minimum capital, caps the grade at D whatever the score.</p>
+        <ul class="ui" style="font-size:14px; color:var(--ink-2)">
+          <li>These are relative screening grades, not credit ratings. They say where an insurer stood among its Kenyan peers that year.</li>
+          <li>IRA's quarterly returns are unaudited. The balance sheet is the general business return, so composites show their general fund only.</li>
+          <li>Equity stands in for IRA's risk-based capital test, which needs data IRA does not publish. It is the lenient side of that test: IRA counted 15 of 35 general insurers short of capital at December 2023; the floor here flags 9 of 34.</li>
+          <li>The floor applies today's rule to every year. For 2016 to 2019 that is stricter than the rule then in force and caps six grades, none of them in the back-test.</li>
+          <li>IRA moved the statements to IFRS 17 from Q1 2024. Ranking within each year keeps comparisons like for like.</li>
+          <li>IRA has no year-end 2017 workbook online, so 2017 is blank.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Source: Insurance Regulatory Authority, Kenya, quarterly industry statistics, Q4 2016 to Q1 2026, as extracted and validated in ira-kenya-data. Regulator actions: Capital FM (Resolution, April 2022; Xplico and Invesco, 8 December 2023; Invesco again, August 2024), IRA on X (Trident and Corporate, March 2026), Business Daily (capital shortfalls, 8 December 2024; Kuscco Mutual, April 2026). Everything here is public data. Nothing comes from inside any insurer.</p>
+    <p>Marion Peter &middot; github.com/maidenpeter/ira-kenya-reinsurance</p>
+  </footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const GRADES = ['A','B','C','D','E'];
+const PNAMES = ['Balance sheet','Operating performance','Business profile','Return quality'];
+const PW = [35,35,15,15];
+const PVAR = ['--p1','--p2','--p3','--p4'];
+const MLAB = [
+  ['Capital cover','Equity over IRA minimum capital',0,'x'],
+  ['Liquidity cover','Cash, deposits, government paper over insurance liabilities',0,'x'],
+  ['Receivables share','Receivables over total assets',0,'%'],
+  ['Combined ratio, 3 yrs','Claims and expenses over net earned premium',1,'%'],
+  ['Loss ratio volatility','Spread of the loss ratio, up to 5 yrs',1,'pts'],
+  ['Return on equity, 3 yrs','Profit after tax over equity',1,'%'],
+  ['Size','Gross written premium',2,'ksh'],
+  ['Diversification','1 less the Herfindahl index of the class mix',2,'n'],
+  ['Retention','Net over gross written premium',2,'%'],
+  ['Return quality','Clean, consistent, on-time returns',3,'score'],
+];
+const FLAGS = {
+  negative_equity:['Negative equity','crit'],
+  below_capital_floor:['Equity below IRA minimum capital','crit'],
+  combined_ratio_above_110:['3-yr combined ratio above 110%','warn'],
+  three_underwriting_losses:['Underwriting loss 3 years running','warn'],
+  unreliable_return:['A return failed IRA consistency checks','warn'],
+  low_retention:['Keeps under 25% of premium','info'],
+};
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const byYear = {}; D.rows.forEach(r => (byYear[r.y] = byYear[r.y] || []).push(r));
+const byComp = {}; D.rows.forEach(r => (byComp[r.id] = byComp[r.id] || {})[r.y] = r);
+const nsBy = {}; D.not_scored.forEach(r => (nsBy[r.id] = nsBy[r.id] || {})[r.y] = r);
+const LAST = D.years[D.years.length-1];
+const ALLY = []; for(let y=D.years[0]; y<=LAST; y++) ALLY.push(y);
+const name = id => (D.companies[id]||{}).short || id;
+const fullname = id => (D.companies[id]||{}).name || id;
+let state = {year: LAST, sel: null, sort: 'rank', dir: 'asc'};
+try { const s = JSON.parse(localStorage.getItem('ccs') || '{}'); if (D.years.includes(s.year)) state.year = s.year; } catch(e) {}
+const h = location.hash.replace('#','');
+if (h && byComp[h]) { state.sel = h; const ys = Object.keys(byComp[h]).map(Number); if(!byComp[h][state.year]) state.year = Math.max(...ys); }
+function save(){ try { localStorage.setItem('ccs', JSON.stringify({year: state.year})); } catch(e) {} }
+
+function fmt(v, unit){
+  if (v === null || v === undefined) return '<span style="color:var(--muted)">n/a</span>';
+  if (unit === 'x') return v.toFixed(2) + '&times;';
+  if (unit === '%') return (v*100).toFixed(0) + '%';
+  if (unit === 'pts') return (v*100).toFixed(1) + ' pts';
+  if (unit === 'ksh') return v >= 1000 ? 'KSh ' + (v/1000).toFixed(1) + 'bn' : 'KSh ' + v.toFixed(0) + 'm';
+  if (unit === 'n') return v.toFixed(2);
+  if (unit === 'score') return v.toFixed(0) + ' / 100';
+  return v;
+}
+const tip = $('tip');
+function showTip(e, html){ tip.innerHTML = html; tip.hidden = false; const r = tip.getBoundingClientRect(); let x = e.clientX+14, y = e.clientY+14; if (x+r.width > innerWidth-8) x = e.clientX-r.width-14; if (y+r.height > innerHeight-8) y = e.clientY-r.height-14; tip.style.left = x+'px'; tip.style.top = y+'px'; }
+function hideTip(){ tip.hidden = true; }
+function bindTips(root){ root.querySelectorAll('[data-tip]').forEach(el => { el.addEventListener('mousemove', e => showTip(e, el.dataset.tip)); el.addEventListener('mouseleave', hideTip); }); }
+
+// cell for a company-year: grade, incomplete, small, or gap
+function cellFor(id, y){
+  const r = (byComp[id]||{})[y];
+  if (r) return {cls: r.g, txt: r.g, tip: `${y}: grade ${r.g}, score ${r.score.toFixed(1)}, ${r.rank} of ${r.peers}` + (r.g !== r.gu ? ` (score alone gives ${r.gu})` : '')};
+  const n = (nsBy[id]||{})[y];
+  if (n) {
+    if (n.reason.startsWith('no full-year')) return {cls:'nr', txt:'&middot;', tip:`${y}: ${esc(n.reason)}`};
+    if (n.reason.startsWith('below')) return {cls:'sm', txt:'&lt;', tip:`${y}: ${esc(n.reason)}`};
+    return {cls:'gap', txt:'', tip:`${y}: ${esc(n.reason)}`};
+  }
+  if (!D.years.includes(y)) return {cls:'gap', txt:'&ndash;', tip:`${y}: no year-end workbook from IRA`};
+  return {cls:'gap', txt:'', tip:`${y}: not in IRA's tables`};
+}
+
+function renderStamp(){
+  $('stamp').innerHTML = `Full years ${D.years[0]} to ${LAST}<br>${D.rows.length} insurer-years graded<br>Returns to Q1 2026`;
+}
+
+function renderBacktest(){
+  const bt = D.backtest;
+  const bottom = bt.filter(b => b.bottom).length;
+  $('thesis').innerHTML = `Five Kenyan general insurers have gone into statutory management or liquidation since 2022. <em>${bottom===3?'Three':bottom} sat in the bottom fifth of this table</em> in their last full year before the regulator stepped in. The other two had stopped filing complete returns.`;
+  const cols = ALLY.concat([LAST+1]);
+  let html = '<div></div>' + cols.map(y => `<div class="yh">${y}</div>`).join('');
+  bt.forEach(b => {
+    const [ey, em] = b.date.split('-').map(Number);
+    html += `<div class="strip-name"><span>${esc(name(b.id))}</span><span class="small">${esc(b.event)}, ${MONTHS[em-1].slice(0,3)} ${ey}</span></div>`;
+    cols.forEach(y => {
+      let c;
+      if (y > ey || (y === ey && !(byComp[b.id]||{})[y])) c = {cls:'after', txt:'', tip:''};
+      else c = cellFor(b.id, y);
+      const ev = y === ey ? `<i class="event" style="left:${((em-0.5)/12*100).toFixed(1)}%"><span>${MONTHS[em-1].slice(0,3)}</span></i>` : '';
+      html += `<div class="cell">${ev}<i class="g ${c.cls}" ${c.tip?`data-tip="${c.tip}"`:''}>${c.txt}</i></div>`;
+    });
+    let cap;
+    if (b.bottom) cap = `Last full year before: ${b.last}, grade ${b.grade}, ranked ${b.rank}. Bottom fifth.`;
+    else cap = `Last graded ${b.last} at ${b.grade}, ranked ${b.rank}. Then: ${esc(b.after.replace(/; /g, '. '))}.`;
+    html += `<div class="strip-cap">${cap}</div>`;
+  });
+  $('strips').innerHTML = html;
+  bindTips($('strips'));
+  $('bt-note').innerHTML = 'Invesco had its licence cancelled in December 2023 and was put under statutory management in August 2024. Kuscco Mutual Assurance, placed under statutory management with Trident and Corporate in 2026, is a life insurer and falls outside this scorecard. Five cases is a small sample, and a back-test like this cannot count the low-graded insurers that carried on without trouble.';
+}
+
+function renderYears(){
+  $('years').innerHTML = D.years.map(y => `<button type="button" aria-pressed="${y===state.year}" data-y="${y}">${y}</button>`).join('');
+  $('years').querySelectorAll('button').forEach(b => b.onclick = () => { state.year = +b.dataset.y; if (!byComp[state.sel] || !byComp[state.sel][state.year]) state.sel = null; render(); });
+}
+
+function median(a){ const s = a.filter(v => v !== null).sort((x,y)=>x-y); if(!s.length) return null; const m = Math.floor(s.length/2); return s.length%2 ? s[m] : (s[m-1]+s[m])/2; }
+
+function renderSummary(rows){
+  const cnt = GRADES.map(g => rows.filter(r => r.g === g).length);
+  const n = rows.length;
+  const mix = GRADES.map((g,i) => cnt[i] ? `<div style="flex:${cnt[i]}; background:var(--g${g}); color:var(--g${g}-t)" data-tip="${cnt[i]} graded ${g}">${g} ${cnt[i]}</div>` : '').join('');
+  const neg = rows.filter(r => r.flags.includes('negative_equity')).length;
+  const flo = rows.filter(r => r.flags.includes('below_capital_floor')).length;
+  const cr = median(rows.map(r => r.m[3]));
+  const ret = median(rows.map(r => r.m[8]));
+  $('summary').innerHTML = `
+    <div class="kpi"><span class="k">${n} insurers graded</span><div class="mix">${mix}</div></div>
+    <div class="kpi"><span class="k">Capital</span><span class="v">${neg + flo}</span><span class="s">${neg} negative equity, ${flo} below the floor</span></div>
+    <div class="kpi"><span class="k">Median combined ratio</span><span class="v">${cr===null?'n/a':(cr*100).toFixed(0)+'%'}</span><span class="s">three-year average</span></div>
+    <div class="kpi"><span class="k">Median retention</span><span class="v">${ret===null?'n/a':(ret*100).toFixed(0)+'%'}</span><span class="s">of gross premium kept net</span></div>`;
+  bindTips($('summary'));
+}
+
+function sbar(r){
+  return `<span class="sbar" aria-hidden="true">${r.p.map((v,i) => v===null ? '' : `<i style="width:${(v*PW[i]/100*1.2).toFixed(1)}px; background:var(${PVAR[i]})"></i>`).join('')}</span>`;
+}
+function dots(r){
+  return `<span class="dots">${r.flags.map(f => `<i class="dot ${FLAGS[f][1]}" title="${FLAGS[f][0]}"></i>`).join('')}</span>`;
+}
+
+function renderLeague(rows){
+  $('plegend').innerHTML = 'Score, split by pillar: ' + PNAMES.map((p,i) => `<span><i class="sw" style="background:var(${PVAR[i]})"></i>${p}</span>`).join('');
+  const key = {rank: r => r.rank, name: r => name(r.id).toLowerCase(), score: r => -r.score}[state.sort];
+  const sorted = rows.slice().sort((a,b) => { const x = key(a), y = key(b); return (x<y?-1:x>y?1:0) * (state.dir==='asc'?1:-1); });
+  const th = (k, lab, cls) => `<th class="${cls||''}"><button type="button" data-k="${k}" ${state.sort===k?`data-dir="${state.dir}"`:''}>${lab}</button></th>`;
+  let html = `<thead><tr>${th('rank','#')}${th('name','Insurer','l')}<th>Grade</th>${th('score','Score','l')}<th class="hide-sm">Share</th><th class="l">Flags</th></tr></thead><tbody>`;
+  sorted.forEach(r => {
+    html += `<tr tabindex="0" data-id="${r.id}" aria-selected="${r.id===state.sel}">
+      <td>${r.rank}</td>
+      <td class="l"><span class="name">${esc(name(r.id))}</span></td>
+      <td><span class="pill ${r.g}">${r.g}</span>${r.g!==r.gu?'<span class="capped" title="Grade capped at D for capital">cap</span>':''}</td>
+      <td class="l"><span style="display:inline-flex; align-items:center; gap:8px">${sbar(r)}<span>${r.score.toFixed(1)}</span></span></td>
+      <td class="hide-sm">${r.share===null?'':(r.share*100).toFixed(1)+'%'}</td>
+      <td class="l">${dots(r)}</td></tr>`;
+  });
+  $('league').innerHTML = html + '</tbody>';
+  $('league').querySelectorAll('th button').forEach(b => b.onclick = () => {
+    const k = b.dataset.k; if (state.sort === k) state.dir = state.dir==='asc'?'desc':'asc'; else { state.sort = k; state.dir = 'asc'; } render();
+  });
+  $('league').querySelectorAll('tr[data-id]').forEach(tr => {
+    const pick = () => { state.sel = tr.dataset.id; render(); if (innerWidth <= 900) $('detail').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth', block:'start'}); };
+    tr.onclick = pick; tr.onkeydown = e => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); pick(); } };
+  });
+}
+
+function renderDetail(rows){
+  const r = rows.find(x => x.id === state.sel) || rows[0];
+  state.sel = r.id;
+  const flags = r.flags.length ? r.flags.map(f => `<span class="chip ${FLAGS[f][1]==='info'?'':FLAGS[f][1]}">${FLAGS[f][0]}</span>`).join('') : '<span class="chip">No watch flags</span>';
+  const pil = r.p.map((v,i) => `<span class="lab">${PNAMES[i]}<b>${PW[i]}</b></span>
+      <span class="track"><span class="fill" style="width:${v===null?0:v}%; background:var(${PVAR[i]})"></span><span class="mid"></span></span>
+      <span class="val">${v===null?'n/a':v.toFixed(0)}</span>`).join('');
+  let mt = '<thead><tr><th class="l">Metric</th><th>Value</th><th class="l">Percentile among peers</th></tr></thead><tbody>';
+  MLAB.forEach((m,i) => {
+    const pc = r.pct[i];
+    mt += `<tr><td class="l" data-tip="${esc(m[1])}">${m[0]}</td><td>${fmt(r.m[i], m[3])}</td>
+      <td class="l">${pc===null?`<span style="color:var(--muted)">${i===2&&r.basis==='IFRS 17'?'not used under IFRS 17':'not enough history'}</span>`:i===9?`<span class="ptrack"><b style="left:${pc}%"></b></span> <span style="margin-left:6px">${pc.toFixed(0)} (absolute)</span>`:`<span class="ptrack"><b style="left:${pc}%"></b></span> <span style="margin-left:6px">${pc.toFixed(0)}</span>`}</td></tr>`;
+  });
+  mt += '</tbody>';
+  const hist = ALLY.map(y => `<span class="yh">${String(y).slice(2)}</span>`).join('') +
+    ALLY.map(y => { const c = cellFor(r.id, y); return `<i class="g ${c.cls}" ${c.tip?`data-tip="${c.tip}"`:''}>${c.txt}</i>`; }).join('');
+  $('detail').innerHTML = `
+    <div class="dhead"><div class="big ${r.g}">${r.g}<small>${r.score.toFixed(1)}</small></div>
+      <div><h3>${esc(fullname(r.id))}</h3><div class="small">${r.y}: ranked ${r.rank} of ${r.peers}${r.share!==null?`, ${(r.share*100).toFixed(1)}% of the peer group's premium`:''}. ${r.basis}.</div>
+      ${r.g!==r.gu?`<div class="small" style="color:var(--crit)">Score alone gives ${r.gu}. Capped at D for capital.</div>`:''}</div></div>
+    <div class="flags">${flags}</div>
+    <div class="pillars">${pil}</div>
+    <div class="tablewrap"><table class="mt">${mt}</table></div>
+    <div><div class="small" style="margin-bottom:5px">Grade history</div><div class="hist">${hist}</div></div>`;
+  bindTips($('detail'));
+}
+
+function renderMix(){
+  const W = 520, H = 230, L = 26, R = 8, T = 10, B = 24;
+  const ys = ALLY; const bw = (W-L-R)/ys.length;
+  const maxN = Math.max(...D.years.map(y => byYear[y].length));
+  const sc = v => (H-T-B) * v / maxN;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Insurers by grade and year">`;
+  [0,10,20,30].filter(v => v <= maxN).forEach(v => { const y = H-B-sc(v); s += `<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--rule-soft)"/><text x="${L-6}" y="${y+4}" text-anchor="end">${v}</text>`; });
+  ys.forEach((yr,i) => {
+    const x = L + i*bw + 4, w = bw-8;
+    s += `<text x="${x+w/2}" y="${H-6}" text-anchor="middle">${yr}</text>`;
+    if (!byYear[yr]) { s += `<text x="${x+w/2}" y="${H-B-8}" text-anchor="middle">no data</text>`; return; }
+    let y0 = H-B;
+    GRADES.forEach(g => {
+      const n = byYear[yr].filter(r => r.g === g).length; if (!n) return;
+      const hgt = sc(n); y0 -= hgt;
+      s += `<rect x="${x}" y="${y0}" width="${w}" height="${Math.max(hgt-1,0.5)}" fill="var(--g${g})" data-tip="${yr}: ${n} graded ${g}"/>`;
+      if (hgt >= 13) s += `<text x="${x+w/2}" y="${y0+hgt/2+4}" text-anchor="middle" style="fill:var(--g${g}-t); font-weight:600">${n}</text>`;
+    });
+  });
+  $('mixchart').innerHTML = s + '</svg>';
+  bindTips($('mixchart'));
+}
+
+function renderSens(){
+  const W = 520, H = 200, L = 36, R = 110, T = 12, B = 24;
+  const alts = [...new Set(D.sensitivity.map(s => s.alt))];
+  const lo = 0.95, hi = 1.0;
+  const xs = y => L + (ALLY.indexOf(y)) * (W-L-R)/(ALLY.length-1);
+  const ys = v => T + (hi - v)/(hi-lo) * (H-T-B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Rank correlation by year">`;
+  [0.95,0.96,0.97,0.98,0.99,1.0].forEach(v => s += `<line x1="${L}" x2="${W-R}" y1="${ys(v)}" y2="${ys(v)}" stroke="var(--rule-soft)"/><text x="${L-6}" y="${ys(v)+4}" text-anchor="end">${v.toFixed(2)}</text>`);
+  D.years.forEach(y => s += `<text x="${xs(y)}" y="${H-6}" text-anchor="middle">${String(y).slice(2)}</text>`);
+  const cols = ['var(--p1)','var(--gD)'];
+  alts.forEach((a,k) => {
+    const pts = D.sensitivity.filter(x => x.alt === a).sort((p,q) => p.y-q.y);
+    const seg = []; let cur = [];
+    pts.forEach((p,i) => { if (i && p.y - pts[i-1].y > 1) { seg.push(cur); cur = []; } cur.push(p); }); seg.push(cur);
+    seg.forEach(sg => s += `<polyline fill="none" stroke="${cols[k]}" stroke-width="2" points="${sg.map(p => `${xs(p.y)},${ys(p.rho)}`).join(' ')}"/>`);
+    pts.forEach(p => s += `<circle cx="${xs(p.y)}" cy="${ys(p.rho)}" r="3.5" fill="${cols[k]}" data-tip="${a}, ${p.y}: correlation ${p.rho.toFixed(3)}, ${p.changes} of ${p.peers} grades change"/>`);
+    const lp = pts[pts.length-1];
+    s += `<text x="${xs(lp.y)+8}" y="${ys(lp.rho)+4 + (k? 8 : -4)}" style="fill:${cols[k]}">${a}</text>`;
+  });
+  $('senschart').innerHTML = s + '</svg>';
+  bindTips($('senschart'));
+  const rhos = D.sensitivity.map(x => x.rho);
+  $('senstext').textContent = `Lowest correlation ${Math.min(...rhos).toFixed(3)}. The order barely moves; grades near a band edge can shift one letter.`;
+}
+
+function renderNotScored(){
+  $('ns-year').textContent = state.year;
+  const list = D.not_scored.filter(n => n.y === state.year && !n.reason.startsWith('micro'));
+  const micro = D.not_scored.filter(n => n.y === state.year && n.reason.startsWith('micro')).length;
+  $('notlist').innerHTML = list.map(n => `<div><span>${esc(fullname(n.id))}</span><span>${esc(n.reason)}${n.note?`. ${esc(n.note)}`:''}</span></div>`).join('') +
+    (micro ? `<div><span>${micro} micro insurer${micro>1?'s':''}</span><span>not scored by design</span></div>` : '') +
+    (!list.length && !micro ? '<div><span>None</span><span></span></div>' : '');
+}
+
+function renderMethod(){
+  let t = '<thead><tr><th class="l">Pillar</th><th class="l">Metric</th><th>Weight</th><th class="l">Better when</th></tr></thead><tbody>';
+  const w = [15,10,10,15,10,10,5,5,5,15];
+  const better = ['higher','higher','lower','lower','lower','higher','larger','higher','higher','higher'];
+  MLAB.forEach((m,i) => t += `<tr><td class="l">${i===0||MLAB[i-1][2]!==m[2]?`<span class="sw" style="background:var(${PVAR[m[2]]}); margin-right:6px"></span>${PNAMES[m[2]]}`:''}</td><td class="l" style="white-space:normal">${m[0]}<br><span class="small">${m[1]}</span></td><td>${w[i]}</td><td class="l">${better[i]}</td></tr>`);
+  $('mtable').innerHTML = t + '</tbody>';
+}
+
+function render(){
+  save();
+  const rows = byYear[state.year];
+  $('yr-title').textContent = state.year;
+  renderYears(); renderSummary(rows); renderLeague(rows); renderDetail(rows); renderNotScored();
+  $('league').querySelectorAll('tr[data-id]').forEach(tr => tr.setAttribute('aria-selected', tr.dataset.id === state.sel));
+}
+renderStamp(); renderBacktest(); renderMix(); renderSens(); renderMethod(); render();
+</script>

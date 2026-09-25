@@ -4,3 +4,4 @@ set -e
 python src/scorecard/metrics.py
 python src/scorecard/score.py
 python src/scorecard/backtest.py
+python src/scorecard/build_page.py
