@@ -62,7 +62,10 @@ The data comes from [ira-kenya-data](https://github.com/maidenpeter/ira-kenya-da
 ```
 pip install -r requirements.txt
 ./run.sh
+pytest tests
 ```
+
+The tests pin down the scoring rules (which way each metric counts, the grade bands, the capital cap, who is left out) and check the published scorecard obeys them. GitHub Actions runs them on every push.
 
 ## Caveats
 
