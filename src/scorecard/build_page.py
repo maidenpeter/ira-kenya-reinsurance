@@ -69,7 +69,10 @@ def main():
     with open(os.path.join(PAGE, "scorecard_data.json"), "w", encoding="utf-8", newline="\n") as f:
         f.write(js)
     tpl = open(os.path.join(PAGE, "template.html"), encoding="utf-8").read()
-    html = tpl.replace("/*__DATA__*/null", js.replace("</", "<\\/"))
+    body = tpl.replace("/*__DATA__*/null", js.replace("</", "<\\/"))
+    html = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></head><body>\n'
+            + body + "\n</body></html>\n")
     with open(os.path.join(PAGE, "kenya-cedant-scorecard.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(html)
     print(f"{len(rows)} rows, {len(years)} years, page {len(html) / 1024:.0f} KB")
