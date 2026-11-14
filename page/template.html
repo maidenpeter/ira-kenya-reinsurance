@@ -1,40 +1,38 @@
 <title>Kenya Cedant Scorecard</title>
+<script>try{var t=localStorage.getItem('mp-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Pinyon+Script&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
 :root{
-  --ground:#f4f6f3; --surface:#ffffff; --ink:#15202b; --ink-2:#4f5a64; --muted:#6d7780;
-  --rule:#d9dfdb; --rule-soft:#e8ece9; --accent:#184f95; --accent-soft:#e3ecf8;
-  --crit:#c23b3b; --warn:#a86f00; --info:#4f5a64;
-  --gA:#0b6e4f; --gB:#5d9e76; --gC:#c9a646; --gD:#dd7a3a; --gE:#b8322f;
-  --gA-t:#ffffff; --gB-t:#ffffff; --gC-t:#2b2410; --gD-t:#ffffff; --gE-t:#ffffff;
-  --nr:#e7e3dc; --nr-line:#b9b1a4;
-  --p1:#184f95; --p2:#4d7fc0; --p3:#8fb1de; --p4:#c3d5ee;
+  color-scheme:dark;
+  --ground:#0f1b2d; --surface:#152539; --sunk:#0a1420;
+  --ink:#ede7d8; --ink-2:#c4c0b4; --muted:#9c9b94;
+  --rule:rgba(237,231,216,.17); --rule-soft:rgba(237,231,216,.09); --rule-strong:rgba(237,231,216,.34);
+  --accent:#f0a63a; --accent-soft:rgba(240,166,58,.11); --on-accent:#0f1b2d; --on-strong:#0f1b2d;
+  --crit:#ee8a72; --warn:#f0a63a; --info:#c4c0b4;
+  --gA:#25a3a4; --gB:#86c9bb; --gC:#d8c08a; --gD:#e3925f; --gE:#d9694f;
+  --gA-t:#0f1b2d; --gB-t:#0f1b2d; --gC-t:#0f1b2d; --gD-t:#0f1b2d; --gE-t:#0f1b2d;
+  --nr:rgba(237,231,216,.10); --nr-line:rgba(237,231,216,.32);
+  --p1:#25a3a4; --p2:#1f8586; --p3:#1a6667; --p4:#144b4c;
   --serif:"EB Garamond", Garamond, "Adobe Garamond Pro", Georgia, serif;
   --ui:"IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --display:"IM Fell English", "EB Garamond", Garamond, Georgia, serif;
+  --display-sc:"IM Fell English SC", "IM Fell English", Georgia, serif;
+  --script:"Pinyon Script", "IM Fell English", cursive;
+  --label:"Old Standard TT", "EB Garamond", Georgia, serif;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --ground:#10161c; --surface:#172029; --ink:#e7ebee; --ink-2:#b4bdc5; --muted:#8f99a3;
-    --rule:#2b3640; --rule-soft:#222c35; --accent:#86b6ef; --accent-soft:#1d2a3a;
-    --crit:#ec6b67; --warn:#f0b43a; --info:#b4bdc5;
-    --gA:#1f9a70; --gB:#6fb088; --gC:#d6b457; --gD:#e5874a; --gE:#d9534f;
-    --gA-t:#ffffff; --gB-t:#0e1a14; --gC-t:#1f1a0b; --gD-t:#1c0f06; --gE-t:#ffffff;
-    --nr:#26303a; --nr-line:#4a5561;
-    --p1:#86b6ef; --p2:#5b8fd0; --p3:#3a679f; --p4:#2a4466;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --ground:#10161c; --surface:#172029; --ink:#e7ebee; --ink-2:#b4bdc5; --muted:#8f99a3;
-  --rule:#2b3640; --rule-soft:#222c35; --accent:#86b6ef; --accent-soft:#1d2a3a;
-  --crit:#ec6b67; --warn:#f0b43a; --info:#b4bdc5;
-  --gA:#1f9a70; --gB:#6fb088; --gC:#d6b457; --gD:#e5874a; --gE:#d9534f;
-  --gA-t:#ffffff; --gB-t:#0e1a14; --gC-t:#1f1a0b; --gD-t:#1c0f06; --gE-t:#ffffff;
-  --nr:#26303a; --nr-line:#4a5561;
-  --p1:#86b6ef; --p2:#5b8fd0; --p3:#3a679f; --p4:#2a4466;
+:root[data-theme="light"]{
+  color-scheme:light;
+  --ground:#ecdfc3; --surface:#f3e8cf; --sunk:#e2d3b2;
+  --ink:#2b2118; --ink-2:#4a3a2a; --muted:#655440;
+  --rule:rgba(43,33,24,.20); --rule-soft:rgba(43,33,24,.10); --rule-strong:rgba(43,33,24,.42);
+  --accent:#7d530e; --accent-soft:rgba(125,83,14,.10); --on-accent:#f3e8cf; --on-strong:#ffffff;
+  --crit:#7a2d1b; --warn:#7d530e; --info:#4a3a2a;
+  --gA:#008a7e; --gB:#4e9a86; --gC:#b8975a; --gD:#c06a3c; --gE:#a8432a;
+  --gA-t:#ffffff; --gB-t:#ffffff; --gC-t:#1f1a0b; --gD-t:#ffffff; --gE-t:#ffffff;
+  --nr:#e2d3b2; --nr-line:#ad9a76;
+  --p1:#008a7e; --p2:#3ea397; --p3:#82c2b8; --p4:#bfdfd6;
 }
 *{box-sizing:border-box}
 body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.45}
@@ -176,8 +174,46 @@ footer p{margin:0; max-width:110ch}
 @media (prefers-reduced-motion: no-preference){
   .g, .pill, .fill{transition:background-color .2s}
 }
+
+/* ---------------------------------------------------------- copperplate layer, shared with maidenpeter.github.io */
+:root{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .93 0 0 0 0 .90 0 0 0 0 .84 0 0 0 .055 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); --fox:rgba(0,0,0,.30); --hatch-line:rgba(10,20,32,.30)}
+:root[data-theme="light"]{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .30 0 0 0 0 .16 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); --fox:rgba(138,90,36,.16); --hatch-line:rgba(43,33,24,.26)}
+body{background-color:var(--ground);background-image:var(--grain)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 50% 42%,transparent 58%,var(--fox) 100%)}
+.mp-head,.mp-sub,.wrap{position:relative;z-index:1}
+h1,h2{font-family:var(--display);font-weight:400;letter-spacing:0}
+.eyebrow{font-family:var(--label);letter-spacing:.16em}
+.sechead{border-top:3px double var(--rule-strong);padding-top:18px}
+.panel,.detail{border-radius:2px;outline:1px solid var(--rule);outline-offset:-6px}
+footer{border-top:3px double var(--rule-strong)}
+body{margin:0}
+.sw{display:inline-block;min-width:12px;min-height:12px;vertical-align:-1px}
+.track2 .bar,.sbar i{background-image:repeating-linear-gradient(135deg,var(--hatch-line) 0 1px,transparent 1px 4px)}
+
+/* portfolio header */
+.mp-head{border-bottom:3px double var(--rule-strong);background:transparent}
+.mp-in{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px 22px;flex-wrap:wrap}
+.mp-brand{font-family:var(--display-sc);font-size:23px;font-weight:400;color:var(--ink);text-decoration:none;letter-spacing:.02em}
+.mp-brand span{font-family:var(--script);font-size:22px;color:var(--accent);margin-left:10px}
+.mp-nav{display:flex;align-items:center;gap:4px 18px;flex-wrap:wrap;font-family:var(--ui);font-size:15px}
+.mp-nav a{color:var(--ink-2);text-decoration:none;padding:6px 0}
+.mp-nav a:hover{color:var(--accent)}
+.mp-nav a[aria-current="page"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent)}
+.mp-theme{font-family:var(--ui);font-size:14px;color:var(--ink-2);background:transparent;border:1px solid var(--rule);border-radius:2px;padding:5px 12px;cursor:pointer;min-height:32px}
+.mp-theme:hover{border-color:var(--accent);color:var(--ink)}
+.mp-sub{border-bottom:1px solid var(--rule)}
+.mp-sub .mp-in{padding-block:8px;justify-content:flex-start;gap:4px 20px;font-family:var(--ui);font-size:14px}
+.mp-sub b{font-family:var(--label);font-weight:400;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;font-size:12px}
+.mp-sub a{color:var(--ink-2);text-decoration:none}
+.mp-sub a:hover{color:var(--accent)}
+.mp-sub a[aria-current="page"]{color:var(--accent)}
+.mp-head a:focus-visible,.mp-sub a:focus-visible,.mp-theme:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+@media (max-width:420px){.mp-brand span{display:block;margin:0;font-size:21px}}
+@media print{.mp-head,.mp-sub{display:none}body::before{display:none}body{background-image:none}}
 </style>
 
+<header class="mp-head"><div class="mp-in"><a class="mp-brand" href="https://maidenpeter.github.io/">Marion Peter<span>Actuarial Engineer</span></a><nav class="mp-nav" aria-label="Main"><a href="https://maidenpeter.github.io/#work">Work</a><a href="https://maidenpeter.github.io/#apps">Apps</a><a href="https://maidenpeter.github.io/kenya-insurance/" aria-current="page">Kenya series</a><a href="https://maidenpeter.github.io/about/">About</a><a href="https://maidenpeter.github.io/#contact">Contact</a><button class="mp-theme" type="button" hidden>Paper theme</button></nav></div></header>
+<nav class="mp-sub" aria-label="Kenya series"><div class="mp-in"><b>Kenya series</b><a href="https://maidenpeter.github.io/ira-kenya-insurance/page/kenya-insurance-loss-map.html">Loss map</a><a href="https://maidenpeter.github.io/ira-kenya-insurance/page/kenya-insurance-market-structure.html">Market structure</a><a href="https://maidenpeter.github.io/ira-kenya-reinsurance/page/kenya-cedant-scorecard.html" aria-current="page">Cedant scorecard</a><a href="https://maidenpeter.github.io/ira-kenya-data/explorer/kenya-insurer-explorer.html">Insurer explorer</a></div></nav>
 <div class="wrap">
   <header class="top">
     <div>
@@ -529,3 +565,7 @@ function render(){
 }
 renderStamp(); renderBacktest(); renderMix(); renderSens(); renderMethod(); render();
 </script>
+<script>(function(){var b=document.querySelector('.mp-theme');if(!b)return;var d=document.documentElement;
+function cur(){return d.getAttribute('data-theme')||'dark'}
+function lab(){var c=cur();b.textContent=c==='dark'?'Paper theme':'Ink theme';b.setAttribute('aria-label','Switch to '+(c==='dark'?'light':'dark')+' theme')}
+b.hidden=false;b.addEventListener('click',function(){var x=cur()==='dark'?'light':'dark';d.setAttribute('data-theme',x);try{localStorage.setItem('mp-theme',x)}catch(e){}lab()});lab()})();</script>
