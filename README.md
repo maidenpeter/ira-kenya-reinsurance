@@ -1,8 +1,43 @@
-# ira-kenya-reinsurance
+<p align="center">
+  <img src="assets/readme/seal.svg" width="84" alt="">
+</p>
 
-A reinsurer's view of Kenya's general insurers: every company scored each year the way a reinsurance underwriter screens a cedant, from the Insurance Regulatory Authority's own returns.
+<h1 align="center">Kenya Cedant Scorecard</h1>
+
+<p align="center">
+  <b>If a reinsurer screened every Kenyan general insurer each year,<br>
+  who would it worry about, and did the warnings come true?</b>
+</p>
+
+<p align="center">
+  <a href="https://maidenpeter.github.io/ira-kenya-reinsurance/page/kenya-cedant-scorecard.html"><b>Open the scorecard</b></a>
+  &nbsp;|&nbsp; <a href="#did-it-see-the-failures-coming">The back-test</a>
+  &nbsp;|&nbsp; <a href="#2025-at-a-glance">2025 at a glance</a>
+  &nbsp;|&nbsp; <a href="#how-the-score-works">How the score works</a>
+  &nbsp;|&nbsp; <a href="#caveats">Caveats</a>
+  &nbsp;|&nbsp; <a href="#why-i-built-this">Why I built this</a>
+</p>
+
+<p align="center"><sub>A portfolio project by Marion Peter. From the Insurance Regulatory Authority's unaudited returns. A screening view, not a credit opinion.</sub></p>
+
+<p align="center">
+  <a href="https://maidenpeter.github.io/ira-kenya-reinsurance/page/kenya-cedant-scorecard.html"><img src="assets/readme/backtest.webp" width="920" alt="The back-test on the scorecard page: five insurers the regulator stepped into, with their grade in each year and the month the regulator acted"></a>
+</p>
+
+## In one minute
 
 Before a reinsurer accepts business it asks four questions of the insurer ceding it. Does this company make money on its underwriting? Is its balance sheet strong enough to stand behind the business? What kind of book is it, and how much of the risk does it keep? Can its numbers be trusted? This repo answers those questions for 43 insurers across nine years (302 company-years), using nothing but public data.
+
+<table>
+  <tr>
+    <td align="center" width="25%"><b>Balance sheet</b><br><sub>Is it strong enough to stand behind the business?</sub><h3>35</h3></td>
+    <td align="center" width="25%"><b>Operating performance</b><br><sub>Does it make money on its underwriting?</sub><h3>35</h3></td>
+    <td align="center" width="25%"><b>Business profile</b><br><sub>What kind of book is it, and how much does it keep?</sub><h3>15</h3></td>
+    <td align="center" width="25%"><b>Return quality</b><br><sub>Can its numbers be trusted?</sub><h3>15</h3></td>
+  </tr>
+</table>
+
+Each insurer gets a score out of 100 each year, built from those four pillars with the weights above, and a grade from A to E. Grades are relative: they say where a company stands among Kenyan general insurers that year. They are not credit ratings.
 
 ## Did it see the failures coming?
 
@@ -25,7 +60,9 @@ Three were in the bottom fifth of the table the year before. The other two dropp
 - The median insurer keeps 72% of the premium it writes and has run a combined ratio of 103% over the last three years.
 - ICEA Lion General, Britam General, The Heritage, Mayfair and Tausi top the table.
 
-Grades are relative: they say where a company stands among Kenyan general insurers that year. They are not credit ratings.
+<p align="center">
+  <a href="https://maidenpeter.github.io/ira-kenya-reinsurance/page/kenya-cedant-scorecard.html"><img src="assets/readme/scorecard.webp" width="720" alt="The scorecard page's league table for one year, with each insurer's grade and pillar scores"></a>
+</p>
 
 ## How the score works
 
@@ -53,7 +90,7 @@ The ranking holds up when the weights change. With equal weights for every metri
 | `output/not_scored.csv` | Insurers left out each year and why |
 | `output/backtest.csv` | The five failures against their scorecard history, with sources |
 | `output/sensitivity.csv` | Rank correlation and grade changes under alternative weights |
-| `page/kenya-cedant-scorecard.html` | The scorecard as a single page: back-test strips, league table by year, how each grade is built. Open it in a browser |
+| `page/kenya-cedant-scorecard.html` | The scorecard as a single page: back-test strips, league table by year, how each grade is built. Open it in a browser, or [on the site](https://maidenpeter.github.io/ira-kenya-reinsurance/page/kenya-cedant-scorecard.html) |
 
 ## Running it
 
@@ -75,4 +112,25 @@ The tests pin down the scoring rules (which way each metric counts, the grade ba
 - IRA moved these statements to IFRS 17 from Q1 2024, so some balance sheet metrics are not comparable across that line. Scores are ranked within each year, so every comparison is like with like.
 - Everything here is public IRA data. Nothing comes from inside any insurer.
 
-Marion Peter
+## Why I built this
+
+In 2025 I placed fourth in the Kenya Re AI4 Hackathon with a decision support tool for triaging facultative
+reinsurance submissions. Part of that triage is the cedant: before the risk itself, a reinsurer wants to know whether
+the insurer passing it on is sound, and whether its numbers can be trusted.
+
+IRA's returns hold enough to ask that of every Kenyan general insurer, every year: the balance sheet, the underwriting
+results, the shape of the book and the quality of the filings themselves. I wanted a screen built only from that public
+data, simple enough to explain line by line, and then the hard test: would it have flagged the insurers the regulator
+later stepped into? Three of the five were in the bottom fifth the year before, and the other two stopped filing
+complete returns, which is a warning of its own.
+
+It is a screening view, not a rating. It says where to look first, which is what an underwriter needs before the
+detailed work on a submission begins.
+
+---
+
+<p align="center">
+  <sub>Part of a portfolio at <a href="https://maidenpeter.github.io/">maidenpeter.github.io</a>, with the data in
+  <a href="https://github.com/maidenpeter/ira-kenya-data">ira-kenya-data</a> and the market analysis in
+  <a href="https://github.com/maidenpeter/ira-kenya-insurance">ira-kenya-insurance</a>.</sub>
+</p>
